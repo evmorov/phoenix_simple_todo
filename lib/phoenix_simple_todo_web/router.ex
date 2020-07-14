@@ -16,8 +16,9 @@ defmodule PhoenixSimpleTodoWeb.Router do
   scope "/", PhoenixSimpleTodoWeb do
     pipe_through :browser
 
-    get "/", CategoryController, :index
+    get "/", TodoItemController, :index
     resources "/categories", CategoryController
+    resources "/todo_items", TodoItemController
   end
 
   # Other scopes may use custom stacks.
