@@ -4,7 +4,7 @@ defmodule PhoenixSimpleTodo.Repo.Migrations.CreateTodoItems do
   def change do
     create table(:todo_items) do
       add :text, :string
-      add :category_id, references(:categories, on_delete: :nothing)
+      add :category_id, references(:categories, on_delete: :nilify_all)
 
       timestamps()
     end
