@@ -11,7 +11,8 @@ defmodule PhoenixSimpleTodoWeb.TodoItemController do
 
   def new(conn, _params) do
     changeset = Todos.change_todo_item(%TodoItem{})
-    render(conn, "new.html", changeset: changeset)
+    categories = Todos.categories_for_todo_form()
+    render(conn, "new.html", changeset: changeset, categories: categories)
   end
 
   def create(conn, %{"todo_item" => todo_item_params}) do
@@ -34,7 +35,8 @@ defmodule PhoenixSimpleTodoWeb.TodoItemController do
   def edit(conn, %{"id" => id}) do
     todo_item = Todos.get_todo_item!(id)
     changeset = Todos.change_todo_item(todo_item)
-    render(conn, "edit.html", todo_item: todo_item, changeset: changeset)
+    categories = Todos.categories_for_todo_form()
+    render(conn, "edit.html", todo_item: todo_item, changeset: changeset, categories: categories)
   end
 
   def update(conn, %{"id" => id, "todo_item" => todo_item_params}) do

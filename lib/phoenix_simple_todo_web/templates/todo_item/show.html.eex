@@ -6,6 +6,10 @@
     <strong>Text:</strong>
     <%= @todo_item.text %>
   </li>
+  <li>
+    <strong>Category:</strong>
+    <%= category_name(@todo_item) %>
+  </li>
 
 </ul>
 

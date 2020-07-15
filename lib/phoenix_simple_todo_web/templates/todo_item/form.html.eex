@@ -9,6 +9,8 @@
   <%= text_input f, :text %>
   <%= error_tag f, :text %>
 
+  <%= select f, :category_id, @categories %>
+
   <div>
     <%= submit "Save" %>
   </div>

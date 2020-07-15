@@ -30,10 +30,16 @@ defmodule PhoenixSimpleTodo.Todos do
   end
 
   def list_todo_items do
-    Repo.all(TodoItem)
+    TodoItem
+    |> Repo.all()
+    |> Repo.preload(:category)
   end
 
-  def get_todo_item!(id), do: Repo.get!(TodoItem, id)
+  def get_todo_item!(id) do
+    TodoItem
+    |> Repo.get!(id)
+    |> Repo.preload(:category)
+  end
 
   def create_todo_item(attrs \\ %{}) do
     %TodoItem{}
@@ -53,5 +59,9 @@ defmodule PhoenixSimpleTodo.Todos do
 
   def change_todo_item(%TodoItem{} = todo_item, attrs \\ %{}) do
     TodoItem.changeset(todo_item, attrs)
+  end
+
+  def categories_for_todo_form() do
+    [{"-", nil} | Repo.all(from(c in Category, select: {c.name, c.id}))]
   end
 end

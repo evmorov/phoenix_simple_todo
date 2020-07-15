@@ -1,10 +1,11 @@
 defmodule PhoenixSimpleTodo.Todos.TodoItem do
   use Ecto.Schema
   import Ecto.Changeset
+  alias PhoenixSimpleTodo.Todos.Category
 
   schema "todo_items" do
     field :text, :string
-    field :category_id, :id
+    belongs_to :category, Category
 
     timestamps()
   end
@@ -12,7 +13,7 @@ defmodule PhoenixSimpleTodo.Todos.TodoItem do
   @doc false
   def changeset(todo_item, attrs) do
     todo_item
-    |> cast(attrs, [:text])
+    |> cast(attrs, [:text, :category_id])
     |> validate_required([:text])
   end
 end

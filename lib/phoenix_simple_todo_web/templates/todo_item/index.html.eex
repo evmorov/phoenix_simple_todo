@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Text</th>
+      <th>Category</th>
 
       <th></th>
     </tr>
@@ -12,6 +13,7 @@
 <%= for todo_item <- @todo_items do %>
     <tr>
       <td><%= todo_item.text %></td>
+      <td><%= category_name(todo_item) %></td>
 
       <td>
         <span><%= link "Show", to: Routes.todo_item_path(@conn, :show, todo_item) %></span>
